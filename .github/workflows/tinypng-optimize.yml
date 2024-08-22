@@ -1,0 +1,45 @@
+name: Optimize Images with TinyPNG
+
+on:
+  push:
+    branches:
+      - main 
+    paths:
+      - '**/*.png'
+      - '**/*.jpg'
+      - '**/*.jpeg'
+
+jobs:
+  optimize-images:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install TinyPNG CLI
+      run: npm install -g tinify-cli
+
+    - name: Optimize images with TinyPNG
+      env:
+        TINYPNG_API_KEY: ${{ secrets.zhZsh5BB7WGh18461DJMrKZsBMDzBmvf }}
+      run: |
+        find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0 | xargs -0 -n1 tinify --api-key $TINYPNG_API_KEY
+
+    - name: Commit optimized images
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Optimize images with TinyPNG" || echo "No changes to commit"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
