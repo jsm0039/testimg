@@ -27,7 +27,7 @@ jobs:
 
     - name: Optimize images with TinyPNG
       env:
-        TINYPNG_API_KEY: ${{ secrets.zhZsh5BB7WGh18461DJMrKZsBMDzBmvf }}
+        TINYPNG_API_KEY: ${{ secrets.TINIFY_API_KEY }}
       run: |
         find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0 | xargs -0 -n1 tinify --api-key $TINYPNG_API_KEY
 
