@@ -16,4 +16,5 @@ jobs:
       - uses: namoscato/action-tinify@v1
         with:
           TINYPNG_API_KEY: ${{ secrets.TINYPNG_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: '이미지 최적화 by TinyPNG'
