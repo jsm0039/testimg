@@ -29,7 +29,7 @@ jobs:
       env:
         TINYPNG_API_KEY: ${{ secrets.TINIFY_API_KEY }}
       run: |
-        find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0 | xargs -0 -n1 tinify --api-key $TINYPNG_API_KEY
+        find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0 | xargs -0 -n1 npx tinify --api-key $TINYPNG_API_KEY
 
     - name: Commit optimized images
       run: |
