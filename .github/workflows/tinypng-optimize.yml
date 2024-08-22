@@ -1,3 +1,5 @@
+name: Optimize Images with TinyPNG
+
 on:
   push:
     branches:
@@ -11,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Compress images with TinyPNG
+        uses: namoscato/action-tinify@v1
         with:
-          ref: ${{ github.head_ref }}
-      - uses: namoscato/action-tinify@v1
-        with:
-          TINYPNG_API_KEY: ${{ secrets.zhZsh5BB7WGh18461DJMrKZsBMDzBmvf }}
+          api_key: ${{ secrets.zhZsh5BB7WGh18461DJMrKZsBMDzBmvf }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: '이미지 최적화 by TinyPNG'
