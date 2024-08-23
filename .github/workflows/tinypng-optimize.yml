@@ -1,7 +1,6 @@
 name: 이미지 compress
 on:
-  pull_request:
-    types: [ opened, synchronize, ready_for_review ]
+  push:
     branches:
       - main
     paths:
@@ -18,6 +17,6 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - uses: namoscato/action-tinify@v1
         with:
-          api_key: ${{ secrets.TINY_PNG_KEY }}
+          api_key: 'zhZsh5BB7WGh18461DJMrKZsBMDzBmvf'
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           commit_message: '이미지 최적화 by TinyPNG'
